@@ -1,0 +1,44 @@
+
+[root@desktop0 ~]# systemctl restart iscsid
+Warning: Unit file of iscsid.service changed on disk, 'systemctl daemon-reload' recommended.
+[root@desktop0 ~]# systemctl daemon-reload
+[root@desktop0 ~]# systemctl restart iscsid 这里主要启动iscsid服务
+[root@desktop0 ~]# systemctl enable iscsid
+ln -s '/usr/lib/systemd/system/iscsid.service' '/etc/systemd/system/multi-user.target.wants/iscsid.service'
+
+[root@desktop0 ~]# man iscsiadm  找example 
+[root@desktop0 ~]# iscsiadm --mode discoverydb --type sendtargets --portal 172.25.0.11 --discover
+172.25.0.11:3260,1 iqn.2016-02.com.example:server0
+[root@desktop0 ~]# vim /var/lib/iscsi/nodes/iqn.2016-02.com.example\:server0/172.25.0.11\,3260\,1/default  打到nodes之后就一直TAB
+
+[root@desktop0 ~]# lsblk
+NAME   MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+vda    253:0    0  10G  0 disk 
+└─vda1 253:1    0  10G  0 part /
+vdb    253:16   0  10G  0 disk 
+[root@desktop0 ~]# partprobe 
+[root@desktop0 ~]# lsblk
+NAME   MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+vda    253:0    0  10G  0 disk 
+└─vda1 253:1    0  10G  0 part /
+vdb    253:16   0  10G  0 disk 
+[root@desktop0 ~]# systemctl enable iscsi 这里主要启动iscsi服务
+[root@desktop0 ~]# systemctl restart iscsi
+[root@desktop0 ~]# systemctl enable iscsi
+[root@desktop0 ~]# lsblk
+NAME   MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+sda      8:0    0   3G  0 disk 
+vda    253:0    0  10G  0 disk 
+└─vda1 253:1    0  10G  0 part /
+vdb    253:16   0  10G  0 disk 
+[root@desktop0 ~]# fdisk /dev/sda
+欢迎使用 fdisk (util-linux 2.23.2)。
+
+
+1,nfs,samba,iscsi的挂载都在desktop0
+2.邮件的题目从100行开始 100G  到314行
+
+
+
+
+

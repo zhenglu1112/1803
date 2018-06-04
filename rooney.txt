@@ -1,0 +1,186 @@
+********************************************************************************
+
+
+
+1、检查主机名
+
+Hostname check OK !
+
+
+
+********************************************************************************
+
+
+
+2、检查IP、网关、DNS
+
+Network configuretion check OK !
+
+
+
+********************************************************************************
+
+
+
+3、检查YUM仓库
+
+YUM check OK !
+
+
+
+********************************************************************************
+
+
+
+5、检查用户权限
+
+
+
+The user "sarah" is  found !!!  
+
+The user "sarah" check OK !!!             
+
+The user "harry" is  found !!!  
+
+Find the file /etc/gshadow
+
+The user "harry"  is belong to the group  "adminuser"
+
+The user "alex" is  found !!!  
+
+The user "natasha" is  found !!!  
+
+Find the file /etc/gshadow
+
+The user "natasha"  is belong to the group  "adminuser"
+
+
+
+********************************************************************************
+
+
+
+11、检查逻辑卷、swap
+
+VG: "systemvg" check OK !
+
+ERROR: LV: "vo" check failure !!!                                           -10
+
+VG: "datastore" check OK !
+
+PE: "PE Size" check OK !!!              
+
+
+
+********************************************************************************
+
+
+
+12、检查开机挂载
+
+ERROR: Can`t find "/vo" OR "/mnt/database" !!!                              -5
+
+ERROR: Mount Point: "/vo"" check failure !!!!                               -10
+
+Mount Point: "/mnt/database" check OK !!!  
+
+Mount Point: "swap" check OK !
+
+
+
+********************************************************************************
+
+
+
+10、检查内核版本
+
+3.10.0-123.1.2.el7.x86_64
+
+The KernelVersion  check OK!
+
+
+
+********************************************************************************
+
+
+
+9、检查共享目录
+
+The dir permission "/home/admins" check ok !!!             
+
+
+
+********************************************************************************
+
+
+
+13、检查NTP时间同步
+
+Chronyd is active and enabled, check OK
+
+
+
+********************************************************************************
+
+
+
+14、检查student用户文件
+
+The files of student is found at "/root/findfiles"
+
+The file of "student"  check OK
+
+
+
+********************************************************************************
+
+
+
+15、检查Tar文件
+
+Found the file "/root/backup.tar.bz2"
+
+The file "/root/backup.tar.bz2" is ok
+
+
+
+********************************************************************************
+
+
+
+16、检查字符串
+
+Found the file "/root/wordlist"
+
+Strings check OK
+
+
+
+********************************************************************************
+
+
+
+17、检查ldap、autofs
+
+autofs is active and enabled, check OK
+
+sssd is active and enabled, check OK
+
+ldapuser0 check Ok      
+
+
+
+The last score: 275
+
+
+
+MORE Infomations at URL http://bj.ne.tedu.cn/ 
+
+                    URL http://bj.linux.tedu.cn/ 
+
+AUTHOR: YANGJF       
+
+TIME  : 2017-11-25   
+
+VERSION: 2.4
+

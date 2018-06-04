@@ -1,0 +1,121 @@
+ 
+  server8
+
+   tar -xf lnmp_soft.tar.gz 
+   17  cd lnmp_soft/
+   18  tar -xf nginx-1.12.2.tar.gz 
+   19  cd nginx-1.12.2/
+   20  useradd -s /sbin/nologin nginx
+   21  ./configure --help
+   22  ./configure --user=nginx --group=nginx --with-http_ssl_module --with-http_stub_status_module --with-stream
+   23  make
+   24  make install
+   25  ln -s /usr/local/nginx/sbin/nginx /sbin/
+   26  systemctl stop httpd
+   27  systemctl disable httpd
+   28  nginx
+   33  firefox 201.1.2.100/index.php
+   34  vim /usr/local/nginx/conf/nginx.conf
+   35  nginx -s reload
+   36  curl 201.1.1.5/index.html
+   37  yum -y install memcached
+   38  yum -y install memcache
+   39  vim /etc/yum.repos.d/wangluodvd.repo 
+   44  systemctl restart memcached
+   45  systemctl enable memcached
+   46  systemctl status memcached
+   47  history | yum -y
+   48  history | grep "yum -y"
+   49  history | grep "yum"
+   50  vim /usr/local/nginx/conf/nginx.conf 
+   
+  配置文件改了
+  upstream webs{
+     server 201.1.2.100:80;
+     server 201.1.2.200:80;
+    }  //这一段都是加的做调度
+    server {
+        listen       80;
+        server_name  localhost;
+
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+
+        location / {
+            proxy_pass http://webs;  //改了
+             root   html;
+            index  index.html index.htm;
+        }
+
+
+  ---------------------------------------------------------------------------------------------------------------------------------------------------------------  
+
+ server9 和 server10 是一样的 
+
+17  tar -xf lnmp_soft.tar.gz 
+   18  cd lnmp_soft/
+   19  tar -xf nginx-1.12.2.tar.gz 
+   20  cd nginx-1.12.2/
+   21  useradd -s /sbin/nologin  nginx
+   22  ./configure --http_ssl_module
+   23  ./configure --user=nginx --group=nginx --with-http_ssl_module
+   24  make
+   25  make install
+   26  systemctl stop httpd
+   27  systemctl disable httpd
+   28  ln -s /usr/local/nginx/sbin/nginx  /sbin/
+   29  ]nginx
+   30  ln -s /usr/local/nginx/sbin/nginx  /sbin
+   31  nginx
+   32  yum -y install mariadb-server mariadb mariadb-devel
+   33  vim /etc/yum.repos.d/wangluodvd.repo 
+   34  yum -y install mariadb-server mariadb mariadb-devel
+   35  yum -y install php php-mysql
+   36  cd ..
+   37  ls
+   38  yum -y install php-fpm-5.4.16-42.el7.x86_64.rpm 
+   39  systemctl restar mariadb
+   40  systemctl restart mariadb
+   41  systemctl enable mariadb
+   42  systemctl restart php-fpm
+   43  systemctl enable php-fpm
+   44  vim /usr/local/nginx/conf/nginx.conf
+   45  nginx -s reload
+   46  cd php_scripts/
+   47  ls
+   48  tar -xf php-memcached-demo.tar.gz 
+   49  cd php-memcached-demo/
+   50  ls
+   51  cp -a * /usr/local/nginx/html/
+   52  firefox 201.1.2.100/index.php
+   53  vim /etc/php-fpm.d/www.conf 
+   54  ls /var/lib/php/session/
+   55* 
+   56  vim /usr/local/nginx/html/home.php
+   57  vim /usr/local/nginx/html/index.php 
+   58  vim /etc/php-fpm.d/www.conf 
+   59  systemctl restart php-fpm
+   60  yum -y install php-pecl-memcache.x86_64 images/
+   61  systemctl retart php-pfm
+   62  systemctl restart php-pfm
+   63  systemctl restart php-fpm
+   64  history | grep "yum"
+
+   配置
+
+      
+ location ~ \.php$ {
+    root           html;
+    fastcgi_pass   127.0.0.1:9000;
+    fastcgi_index  index.php;
+  #  fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+    include        fastcgi.conf;
+}  //php要解开注释
+
+
+php_value[session.save_handler] = memcache
+php_value[session.save_path] = "tcp://201.1.2.5:11211"
+
+
+
