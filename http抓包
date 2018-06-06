@@ -1,0 +1,203 @@
+[root@proxy conf]# tcpdump -A host 192.168.4.5 and tcp port 80
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes
+17:37:41.334369 IP 192.168.4.254.34708 > www.a.com.http: Flags [S], seq 2771726526, win 29200, options [mss 1460,sackOK,TS val 32940403 ecr 0,nop,wscale 7], length 0
+E..<..@.@..............P.50.......r............
+...s........
+17:37:41.334480 IP www.a.com.http > 192.168.4.254.34708: Flags [S.], seq 1460104242, ack 2771726527, win 28960, options [mss 1460,sackOK,TS val 28090345 ecr 32940403,nop,wscale 7], length 0
+E..<..@.@..h.........P..W.l2.50...q ...........
+.......s....
+17:37:41.334498 IP 192.168.4.254.34710 > www.a.com.http: Flags [S], seq 437389778, win 29200, options [mss 1460,sackOK,TS val 32940403 ecr 0,nop,wscale 7], length 0
+E..<..@.@..............P..	.......r............
+...s........
+17:37:41.334542 IP www.a.com.http > 192.168.4.254.34710: Flags [S.], seq 624287138, ack 437389779, win 28960, options [mss 1460,sackOK,TS val 28090345 ecr 32940403,nop,wscale 7], length 0
+E..<..@.@..h.........P..%5....	...q ...........
+.......s....
+17:37:41.335294 IP 192.168.4.254.34708 > www.a.com.http: Flags [.], ack 1, win 229, options [nop,nop,TS val 32940404 ecr 28090345], length 0
+E..4..@.@..............P.50.W.l3.....z.....
+...t....
+17:37:41.335367 IP 192.168.4.254.34710 > www.a.com.http: Flags [.], ack 1, win 229, options [nop,nop,TS val 32940404 ecr 28090345], length 0
+E..4..@.@..............P..	.%5.......z.....
+...t....
+17:37:41.431895 IP 192.168.4.254.34708 > www.a.com.http: Flags [P.], seq 1:371, ack 1, win 229, options [nop,nop,TS val 32940501 ecr 28090345], length 370: HTTP: GET / HTTP/1.1
+E.....@.@../...........P.50.W.l3...........
+........GET / HTTP/1.1
+Host: 192.168.4.5
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.8
+
+
+17:37:41.431942 IP www.a.com.http > 192.168.4.254.34708: Flags [.], ack 371, win 235, options [nop,nop,TS val 28090442 ecr 32940501], length 0
+E..4..@.@............P..W.l3.521.....z.....
+...J....
+17:37:41.432065 IP www.a.com.http > 192.168.4.254.34708: Flags [P.], seq 1:792, ack 371, win 235, options [nop,nop,TS val 28090443 ecr 32940501], length 791: HTTP: HTTP/1.1 401 Unauthorized
+E..K..@.@..~.........P..W.l3.521...........
+...K....HTTP/1.1 401 Unauthorized
+Server: nginx/1.12.2
+Date: Wed, 06 Jun 2018 09:37:41 GMT
+Content-Type: text/html
+Content-Length: 597
+Connection: keep-alive
+WWW-Authenticate: Basic realm="xx"
+
+<html>
+<head><title>401 Authorization Required</title></head>
+<body bgcolor="white">
+<center><h1>401 Authorization Required</h1></center>
+<hr><center>nginx/1.12.2</center>
+</body>
+</html>
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+
+17:37:41.432537 IP 192.168.4.254.34708 > www.a.com.http: Flags [.], ack 792, win 241, options [nop,nop,TS val 32940501 ecr 28090443], length 0
+E..4..@.@..............P.521W.oJ.....z.....
+.......K
+17:37:49.915477 IP 192.168.4.254.34708 > www.a.com.http: Flags [P.], seq 371:780, ack 792, win 241, options [nop,nop,TS val 32948984 ecr 28090443], length 409: HTTP: GET / HTTP/1.1
+E.....@.@..............P.521W.oJ...........
+.......KGET / HTTP/1.1
+Host: 192.168.4.5
+Connection: keep-alive
+Authorization: Basic dG9tOjEyMzQ1Ng==
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.8
+
+
+17:37:49.916927 IP www.a.com.http > 192.168.4.254.34708: Flags [P.], seq 792:1030, ack 780, win 243, options [nop,nop,TS val 28098927 ecr 32948984], length 238: HTTP: HTTP/1.1 200 OK
+E.."..@.@............P..W.oJ.53......h.....
+...o....HTTP/1.1 200 OK
+Server: nginx/1.12.2
+Date: Wed, 06 Jun 2018 09:37:49 GMT
+Content-Type: text/html
+Content-Length: 612
+Last-Modified: Mon, 28 May 2018 09:33:01 GMT
+Connection: keep-alive
+ETag: "5b0bcccd-264"
+Accept-Ranges: bytes
+
+
+17:37:49.918183 IP 192.168.4.254.34708 > www.a.com.http: Flags [.], ack 1030, win 253, options [nop,nop,TS val 32948987 ecr 28098927], length 0
+E..4..@.@..............P.53.W.p8.....z.....
+.......o
+17:37:49.928586 IP www.a.com.http > 192.168.4.254.34708: Flags [P.], seq 1030:1642, ack 780, win 243, options [nop,nop,TS val 28098939 ecr 32948987], length 612: HTTP
+E.....@.@../.........P..W.p8.53............
+...{....<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+
+17:37:49.928660 IP 192.168.4.254.34708 > www.a.com.http: Flags [.], ack 1642, win 266, options [nop,nop,TS val 32948998 ecr 28098939], length 0
+E..4..@.@..............P.53.W.r....
+.z.....
+.......{
+17:37:49.969986 IP 192.168.4.254.34708 > www.a.com.http: Flags [P.], seq 780:1154, ack 1642, win 266, options [nop,nop,TS val 32949039 ecr 28098939], length 374: HTTP: GET /favicon.ico HTTP/1.1
+E.....@.@..&...........P.53.W.r....
+.......
+.../...{GET /favicon.ico HTTP/1.1
+Host: 192.168.4.5
+Connection: keep-alive
+Authorization: Basic dG9tOjEyMzQ1Ng==
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36
+Accept: image/webp,image/apng,image/*,*/*;q=0.8
+Referer: http://192.168.4.5/
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.8
+
+
+17:37:49.970293 IP www.a.com.http > 192.168.4.254.34708: Flags [P.], seq 1642:2368, ack 1154, win 252, options [nop,nop,TS val 28098981 ecr 32949039], length 726: HTTP: HTTP/1.1 404 Not Found
+E..
+..@.@............P..W.r..55@.....P.....
+......./HTTP/1.1 404 Not Found
+Server: nginx/1.12.2
+Date: Wed, 06 Jun 2018 09:37:49 GMT
+Content-Type: text/html
+Content-Length: 571
+Connection: keep-alive
+
+<html>
+<head><title>404 Not Found</title></head>
+<body bgcolor="white">
+<center><h1>404 Not Found</h1></center>
+<hr><center>nginx/1.12.2</center>
+</body>
+</html>
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+
+17:37:49.970356 IP 192.168.4.254.34708 > www.a.com.http: Flags [.], ack 2368, win 278, options [nop,nop,TS val 32949039 ecr 28098981], length 0
+E..4..@.@..............P.55@W.ur.....z.....
+.../....
+17:38:03.519620 IP 192.168.4.254.34710 > www.a.com.http: Flags [F.], seq 1, ack 1, win 229, options [nop,nop,TS val 32962589 ecr 28090345], length 0
+E..4..@.@..............P..	.%5.......z.....
+........
+17:38:03.519712 IP www.a.com.http > 192.168.4.254.34710: Flags [F.], seq 1, ack 2, win 227, options [nop,nop,TS val 28112530 ecr 32962589], length 0
+E..4BI@.@.n'.........P..%5....	......z.....
+........
+17:38:03.519774 IP 192.168.4.254.34710 > www.a.com.http: Flags [.], ack 2, win 229, options [nop,nop,TS val 32962589 ecr 28112530], length 0
+E..4..@.@..............P..	.%5.......z.....
+........
+17:38:34.978283 IP 192.168.4.254.34708 > www.a.com.http: Flags [.], ack 2368, win 278, options [nop,nop,TS val 32994048 ecr 28098981], length 0
+E..4..@.@..............P.55?W.ur.....z.....
+..s.....
+17:38:34.978313 IP www.a.com.http > 192.168.4.254.34708: Flags [.], ack 1154, win 252, options [nop,nop,TS val 28143989 ecr 32949039], length 0
+E..4..@.@............P..W.ur.55@.....z.....
+..qu.../
+17:38:55.012193 IP www.a.com.http > 192.168.4.254.34708: Flags [F.], seq 2368, ack 1154, win 252, options [nop,nop,TS val 28164023 ecr 32949039], length 0
+E..4..@.@............P..W.ur.55@.....z.....
+......./
+17:38:55.052219 IP 192.168.4.254.34708 > www.a.com.http: Flags [.], ack 2369, win 278, options [nop,nop,TS val 33014122 ecr 28164023], length 0
+E..4..@.@..............P.55@W.us.....z.....
+...j....
+17:39:18.932674 IP 192.168.4.254.34708 > www.a.com.http: Flags [F.], seq 1154, ack 2369, win 278, options [nop,nop,TS val 33038002 ecr 28164023], length 0
+E..4..@.@..............P.55@W.us.....z.....
+........
+17:39:18.932728 IP www.a.com.http > 192.168.4.254.34708: Flags [.], ack 1155, win 252, options [nop,nop,TS val 28187943 ecr 33038002], length 0
+E..4.S@.@............P..W.us.55A....}......
+...'....
+^C
+27 packets captured
+27 packets received by filter
+0 packets dropped by kernel
+[root@proxy conf]# echo dG9tOjEyMzQ1Ng== |grep base64 -d
+grep：选项需要一个参数 -- d
+用法: grep [选项]... PATTERN [FILE]...
+试用‘grep --help’来获得更多信息。
+[root@proxy conf]# echo dG9tOjEyMzQ1Ng== |base64 -d
+tom:123456[root@proxy conf]# 
+

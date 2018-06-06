@@ -1,0 +1,84 @@
+[root@server0 ~]# vim /etc/vsftpd/vsftpd.conf 
+[root@server0 ~]# vim /etc/vsftpd/vsftpd.conf 
+[root@server0 ~]# systemctl restart vsftp
+Failed to issue method call: Unit vsftp.service failed to load: No such file or directory.
+[root@server0 ~]# systemctl restart vsftpd
+[root@server0 ~]# tar -czf /var/ftp/log1.tar /var/log
+tar: 从成员名中删除开头的“/”
+[root@server0 ~]# ls -lh /var/tfp
+ls: 无法访问/var/tfp: 没有那个文件或目录
+[root@server0 ~]# ls -lh  /var/ftp
+总用量 348K
+-rw-r--r--. 1 root root 347K 6月   5 16:57 log1.tar
+drwxr-xr-x. 2 root root    6 3月   7 2014 pub
+[root@server0 ~]# ls -Z /var/ftp
+-rw-r--r--. root root unconfined_u:object_r:public_content_t:s0 log1.tar
+drwxr-xr-x. root root system_u:object_r:public_content_t:s0 pub
+[root@server0 ~]# tar -czf log2.tar /var/log
+tar: 从成员名中删除开头的“/”
+[root@server0 ~]# mv log2.tar /var/ftp
+[root@server0 ~]# ls -lh /var/ftp
+总用量 696K
+-rw-r--r--. 1 root root 347K 6月   5 16:57 log1.tar
+-rw-r--r--. 1 root root 347K 6月   5 17:00 log2.tar
+drwxr-xr-x. 2 root root    6 3月   7 2014 pub
+[root@server0 ~]# ls -lZ /var/ftp
+-rw-r--r--. root root unconfined_u:object_r:public_content_t:s0 log1.tar
+-rw-r--r--. root root unconfined_u:object_r:admin_home_t:s0 log2.tar
+drwxr-xr-x. root root system_u:object_r:public_content_t:s0 pub
+[root@server0 ~]# wget ftp://172.25.0.11/log1.tar
+--2018-06-05 17:02:30--  ftp://172.25.0.11/log1.tar
+           => “log1.tar”
+正在连接 172.25.0.11:21... 已连接。
+正在以 anonymous 登录 ... 登录成功！
+==> SYST ... 完成。   ==> PWD ... 完成。
+==> TYPE I ... 完成。 ==> 不需要 CWD。
+==> SIZE log1.tar ... 354669
+==> PASV ... 完成。   ==> RETR log1.tar ... 完成。
+长度：354669 (346K) (非正式数据)
+
+100%[====================================================================>] 354,669     --.-K/s 用时 0s      
+
+2018-06-05 17:02:30 (797 MB/s) - “log1.tar” 已保存 [354669]
+
+[root@server0 ~]# wget ftp://172.25.0.11/log2.tar
+--2018-06-05 17:02:36--  ftp://172.25.0.11/log2.tar
+           => “log2.tar”
+正在连接 172.25.0.11:21... 已连接。
+正在以 anonymous 登录 ... 登录成功！
+==> SYST ... 完成。   ==> PWD ... 完成。
+==> TYPE I ... 完成。 ==> 不需要 CWD。
+==> SIZE log2.tar ... 完成。
+==> PASV ... 完成。   ==> RETR log2.tar ... 
+文件 “log2.tar” 不存在。
+
+[root@server0 ~]# wget ftp://172.25.0.11/log2.tar
+--2018-06-05 17:03:12--  ftp://172.25.0.11/log2.tar
+           => “log2.tar”
+正在连接 172.25.0.11:21... 已连接。
+正在以 anonymous 登录 ... 登录成功！
+==> SYST ... 完成。   ==> PWD ... 完成。
+==> TYPE I ... 完成。 ==> 不需要 CWD。
+==> SIZE log2.tar ... 完成。
+==> PASV ... 完成。   ==> RETR log2.tar ... 
+文件 “log2.tar” 不存在。
+
+[root@server0 ~]# chron -t public_content_t /var/ftp/log2.tar
+bash: chron: 未找到命令...
+[root@server0 ~]# chcon -t public_content_t /var/ftp/log2.tar
+[root@server0 ~]# wget ftp://172.25.0.11/log2.tar
+--2018-06-05 17:09:26--  ftp://172.25.0.11/log2.tar
+           => “log2.tar”
+正在连接 172.25.0.11:21... 已连接。
+正在以 anonymous 登录 ... 登录成功！
+==> SYST ... 完成。   ==> PWD ... 完成。
+==> TYPE I ... 完成。 ==> 不需要 CWD。
+==> SIZE log2.tar ... 355015
+==> PASV ... 完成。   ==> RETR log2.tar ... 完成。
+长度：355015 (347K) (非正式数据)
+
+100%[====================================================================>] 355,015     --.-K/s 用时 0.001s  
+
+2018-06-05 17:09:26 (317 MB/s) - “log2.tar” 已保存 [355015]
+
+

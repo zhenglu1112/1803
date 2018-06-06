@@ -1,0 +1,32 @@
+[root@client ~]# useradd tom
+[root@client ~]# passwd tom
+更改用户 tom 的密码 。
+新的 密码：
+无效的密码： 密码是一个回文
+重新输入新的 密码：
+passwd：所有的身份验证令牌已经成功更新。
+[root@client ~]# tcpdump -w ftp1.log -A host 192.168.4.200 and tcp port 21 
+tcpdump: listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes
+^C15 packets captured
+15 packets received by filter
+0 packets dropped by kernel
+[root@client ~]# tcpdump -A -r ftp1.log |egrep '(USER|PASS)'
+reading from file ftp1.log, link-type EN10MB (Ethernet)
+17:58:19.443538 IP www.a.com.55310 > client.ftp: Flags [P.], seq 1:11, ack 21, win 229, options [nop,nop,TS val 29328455 ecr 29324385], length 10: FTP: USER tom
+...G..taUSER tom
+17:58:20.467630 IP www.a.com.55310 > client.ftp: Flags [P.], seq 11:19, ack 55, win 229, options [nop,nop,TS val 29329479 ecr 29326457], length 8: FTP: PASS 1
+...G..|yPASS 1
+[root@client ~]#
+
+
+ 
+[root@proxy conf]# ftp 192.168.4.200
+Connected to 192.168.4.200 (192.168.4.200).
+220 (vsFTPd 3.0.2)
+Name (192.168.4.200:root): tom
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+

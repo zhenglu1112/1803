@@ -1,0 +1,38 @@
+虚拟机：
+
+虚拟机子上配IP和网关
+虚拟机删除法firewalld ,7必须删掉，6没有可以不删
+
+[root@qq1 ~]# for i in mangle nat filter
+> do
+> iptables -t ${i} -F
+> iptables -t ${i} -X
+> rmmod iptable_${i}
+> done
+[root@qq1 ~]# iptables-save
+[root@qq1 ~]#
+
+打完iptables-save什么都不出来表示OK
+
+
+真机：
+
+关掉firewall
+
+清除规则
+[root@qq1 ~]# for i in mangle nat filter
+> do
+> iptables -t ${i} -F
+> iptables -t ${i} -X
+> rmmod iptable_${i}
+> done
+[root@qq1 ~]# iptables-save
+[root@qq1 ~]#
+
+然后打
+
+sysctl -w net.ipv4.ip_forward=1
+
+iptables -t nat -I PREROUTING -d 176.xx.xx.xx真机ip -p tcp --dport 6022 -j DNAT --to 192.168.4.205:22 虚拟机ip
+
+用别人的真机SSH我的真机，显示的就是我的虚拟机205
