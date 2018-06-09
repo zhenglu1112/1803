@@ -1,0 +1,20 @@
+必须是私钥加密过文件后，把原文件和加密文件一起给公钥加密
+[root@vm1 ~]# gpg -b /etc/sysctl.conf
+[root@vm1 ~]# scp /etc/sysctl.conf /etc/sys
+sysconfig/          sysctl.d/           system-release-cpe
+sysctl.conf         systemd/            
+sysctl.conf.sig     system-release      
+[root@vm1 ~]# scp /etc/sysctl.conf /etc/sysctl.conf.sig root@192.168.2.30:/root
+root@192.168.2.30's password: 
+sysctl.conf                                   100%  449    19.1KB/s   00:00    
+sysctl.conf.sig                               100%  287    66.3KB/s   00:00    
+[root@vm1 ~]# 
+
+
+[root@vm2 ~]# gpg  --verify sysctl.conf.sig sysctl.conf
+gpg: 于 2018年06月09日 星期六 15时26分55秒 CST 创建的签名，使用 RSA，钥匙号 414DEA5E
+gpg: 完好的签名，来自于“zheng (hahahhahahah) <zheng@123.com>”
+gpg: 警告：这把密钥未经受信任的签名认证！
+gpg:       没有证据表明这个签名属于它所声称的持有者。
+主钥指纹： 4697 103A 7BEE A376 21DD  3D31 153E B02F 414D EA5E
+

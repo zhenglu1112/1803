@@ -1,0 +1,35 @@
+[root@benji 1803]# git add *
+[root@benji 1803]# git commit -m "gengxin"
+[master b20aa6f] gengxin
+ 4 files changed, 357 insertions(+)
+ create mode 100644 "ftp\346\212\223\345\214\205.txt"
+ create mode 100644 "http\346\212\223\345\214\205"
+ create mode 100644 "selinux\346\224\271\346\240\207\347\255\276.txt"
+ create mode 100644 "\350\231\232\346\213\237\346\234\272\345\217\221\345\270\203\345\210\260\345\244\226\351\235\242\346\234\272\345\231\250\345\217\257\350\256\277\351\227\256"
+
+[root@benji 1803]# git push
+warning: push.default 未设置，它的默认值将会在 Git 2.0 由 'matching'
+修改为 'simple'。若要不再显示本信息并在其默认值改变后维持当前使用习惯，
+进行如下设置：
+
+  git config --global push.default matching
+
+若要不再显示本信息并从现在开始采用新的使用习惯，设置：
+
+  git config --global push.default simple
+
+参见 'git help config' 并查找 'push.default' 以获取更多信息。
+（'simple' 模式由 Git 1.7.11 版本引入。如果您有时要使用老版本的 Git，
+为保持兼容，请用 'current' 代替 'simple' 模式）
+
+Username for 'https://github.com': zhenglu1112
+Password for 'https://zhenglu1112@github.com': 
+Counting objects: 7, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (6/6), 4.86 KiB | 0 bytes/s, done.
+Total 6 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/zhenglu1112/1803
+   1a1da82..b20aa6f  master -> master
+

@@ -1,0 +1,9 @@
+[root@proxy ~]# ausearch -k ssh_key  -i
+----
+type=CONFIG_CHANGE msg=audit(2018年06月07日 10:14:29.673:138) : auid=root ses=1 op=add_rule key=ssh_key list=exit res=yes 
+----
+type=PROCTITLE msg=audit(2018年06月07日 10:21:56.513:167) : proctitle=cat /etc/ssh/sshd_config 
+type=PATH msg=audit(2018年06月07日 10:21:56.513:167) : item=0 name=/etc/ssh/sshd_config inode=101770561 dev=fd:00 mode=file,600 ouid=root ogid=root rdev=00:00 objtype=NORMAL 
+type=CWD msg=audit(2018年06月07日 10:21:56.513:167) :  cwd=/root 
+type=SYSCALL msg=audit(2018年06月07日 10:21:56.513:167) : arch=x86_64 syscall=open success=yes exit=3 a0=0x7fff8b42c64c a1=O_RDONLY a2=0x1fffffffffff0000 a3=0x7fff8b42ac10 items=1 ppid=2533 pid=2577 auid=root uid=root gid=root euid=root suid=root fsuid=root egid=root sgid=root fsgid=root tty=pts1 ses=7 comm=cat exe=/usr/bin/cat key=ssh_key 
+

@@ -1,0 +1,42 @@
+[root@vm1 ~]# gpg -a --export zheng > /tmp/vm1.pub
+[root@vm1 ~]# scp /tmp/vm1.pub 192.168.2.30:/tmp
+root@192.168.2.30's password: 
+vm1.pub                                       100% 1723     5.7MB/s   00:00    
+[root@vm1 ~]# ls
+anaconda-ks.cfg  initial-setup-ks.cfg  模板  图片  下载  桌面
+bin              公共                  视频  文档  音乐
+[root@vm1 ~]# vim /etc/ssh/sshd_config 
+[root@vm1 ~]# systemctl restart sshd
+[root@vm1 ~]# ls
+anaconda-ks.cfg  initial-setup-ks.cfg  公共  视频  文档  音乐
+bin              sysctl.conf.gpg       模板  图片  下载  桌面
+[root@vm1 ~]# gpg -d sysctl.conf.gpg > sysctl.conf
+gpg: 由 2048 位的 RSA 密钥加密，钥匙号为 FAC70AC0、生成于 2018-06-09
+      “zheng (hahahhahahah) <zheng@123.com>”
+[root@vm1 ~]# cat  sysctl.conf | head 5
+head: 无法打开"5" 读取数据: 没有那个文件或目录
+[root@vm1 ~]# ls 
+anaconda-ks.cfg  initial-setup-ks.cfg  sysctl.conf.gpg  模板  图片  下载  桌面
+bin              sysctl.conf           公共             视频  文档  音乐
+[root@vm1 ~]# vim sysctl.conf
+
+
+
+[root@vm2 ~]# gpg --import /tmp/vm1.pub  
+gpg: 密钥 414DEA5E：“zheng (hahahhahahah) <zheng@123.com>”未改变
+gpg: 合计被处理的数量：1
+gpg:           未改变：1
+[root@vm2 ~]# gpg -e -r zheng /etc/sysctl.conf 
+gpg: FAC70AC0：没有证据表明这把密钥真的属于它所声称的持有者
+
+pub  2048R/FAC70AC0 2018-06-09 zheng (hahahhahahah) <zheng@123.com>
+ 主钥指纹： 4697 103A 7BEE A376 21DD  3D31 153E B02F 414D EA5E
+ 子钥指纹： 78F6 85B3 7CE8 1329 54A7  B97C F9C2 D2F0 FAC7 0AC0
+
+这把密钥并不一定属于用户标识声称的那个人。如果您真的知道自
+己在做什么，您可以在下一个问题回答 yes。
+
+无论如何还是使用这把密钥吗？(y/N)y
+[root@vm2 ~]# ls /etc/sysctl.conf.gpg 
+/etc/sysctl.conf.gpg
+

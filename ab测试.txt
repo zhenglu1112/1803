@@ -1,0 +1,35 @@
+[root@proxy nginx-1.12.2]# ab -c 500 -n 500 http://192.168.4.5/
+This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking 192.168.4.5 (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Completed 400 requests
+Completed 500 requests
+Finished 500 requests
+
+
+Server Software:        ateblanchett
+Server Hostname:        192.168.4.5
+Server Port:            80
+
+Document Path:          /
+Document Length:        612 bytes
+
+
+//500个来访问，失败了494个 
+Concurrency Level:      500                      
+Time taken for tests:   5.002 seconds
+Complete requests:      500
+Failed requests:        494               
+
+//处理的一个，还有5个在漏斗里 ，一共只处理6个
+  limit_req_zone $binary_remote_addr zone=one:10m rate=1r/s;
+    server {
+        listen       80;
+        server_name  localhost;
+        limit_req zone=one burst=5;
+

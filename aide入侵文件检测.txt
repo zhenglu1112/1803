@@ -1,0 +1,56 @@
+vim /etc/aide.conf
+# Example configuration file for AIDE.
+
+@@define DBDIR /var/lib/aide
+@@define LOGDIR /var/log/aide
+
+# The location of the database to be read.
+database=file:@@{DBDIR}/aide.db.gz
+
+# The location of the database to be written.
+#database_out=sql:host:port:database:login_name:passwd:table
+#database_out=file:aide.db.new
+database_out=file:@@{DBDIR}/aide.db.new.gz
+
+//仅保留/root目录，其他目录都注释掉
+/root   DATAONLY
+#/boot   NORMAL                                    //对哪些目录进行什么校验
+#/bin    NORMAL
+#/sbin   NORMAL
+#/lib    NORMAL
+#/lib64  NORMAL
+#/opt    NORMAL
+#/usr    NORMAL
+#!/usr/src                                        //使用[!]，设置不校验的目录
+#!/usr/tmp
+
+
+配置文件里的路径是@@{DBDIR}/aide.db.gz 
+
+当你拷贝出NEW文件之后，拿回来做校验的时候要改名
+
+因为读的是不带NEW的文件
+
+[root@vm1 ~]# aide --init
+
+AIDE, version 0.15.1
+
+### AIDE database at /var/lib/aide/aide.db.new.gz initialized.
+
+[root@vm1 ~]# cp /var/lib/aide/aide.db.new.gz  /u盘
+
+拷贝到u盘之后拿回来校验数据的时候要改名，去掉new
+
+再记得塞回这个目录/var/lib/aide
+
+[root@vm1 aide]# mv aide.db.new.gz aide.db.gz
+[root@vm1 aide]# aide --check
+
+AIDE, version 0.15.1
+
+### All files match AIDE database. Looks okay!
+
+
+
+
+
