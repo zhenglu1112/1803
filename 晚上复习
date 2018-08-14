@@ -1,0 +1,78 @@
+网络，系统管理，服务
+
+项目：实用
+１．名称：达内天坛小区教学＆办公网络平台
+２．描述：
+３．二层交换机：h3c 华为　全千兆
+　　三层交换机　ＣＩＳＣＯ　３５６０
+　　路由器　思科　２９１１
+
+星行结构
+综合布线，有布线公司提供
+
+飞鱼星　通过web界面进行布置
+
+ｖｌａｎ规划：　ｖｌａｎ１－１０　５１－５２ｖｌａｎ办公
+ＩＰ地址规划：１９２．１６８．１．０－１０．０／２４
+三层交换机上配置ＳＶＩ（）
+
+２０栋厂房，每个　厂房２０个货架，每个货架１００台机器
+
+第５个厂房的第５个货架的第５个机器
+１０．５．５．５／２４
+
+
+１０．０．０．０／８
+１７２．１６．０．０　１７２．３１．０．０／１６
+１９２．１６８．０．０　１９２．１６８．２５５．０／２４
+
+ＮＡＴ：网络地址转换　将一个网络地址转换成另一个网络地址
+
+回答：专业
+有逻辑
+思路
+
+nw1h what/why/when/where/how，
+vlan是虚拟局域网　当主机数目非常多的时候，网络中会出现大量的广播，产生广播风暴，为了控制广播引入了vlan　一般一个ｖｌａｎ中主机数目１５０－２００之间划分一个ｖｌａｎ
+如果是办公网络，可以根据部门来创建ｖｌａｎ，为了不同交换机上的相同ｖｌａｎ可以通信，需要配置中继trunk,为了实现ｖｌａｎ间的通信，需要配置三层交换
+
+服务器一般不连成环路，连成星形的，但是会起用生成树协议
+
+4个分区
+
+第五行显示出来
+head -5 /etc/passwd | tail -1
+
+[root@room9pc01 ~]# cat << EOF > 哈哈哈哈
+> 范德萨发课件上打开了
+> 
+> fsdfsdf
+> fsdfsd
+> EOF
+[root@room9pc01 ~]# ls
+  哈哈哈哈         视频         下载
+[root@room9pc01 ~]# 
+
+[root@room9pc01 ~]# chmod +x useradders.sh 
+[root@room9pc01 ~]# ./useradders.sh 
+create user1....				[DONE]
+create user2....				[DONE]
+create user3....				[DONE]
+create user4....				[DONE]
+create user5....				[DONE]
+[root@room9pc01 ~]# ./useradders.sh 3
+create user6....				[DONE]
+create user7....				[DONE]
+create user8....				[DONE]
+[root@room9pc01 ~]# ./useradders.sh 6
+create user9....				[DONE]
+create user10....				[DONE]
+create user11....				[DONE]
+create user12....				[DONE]
+create user13....				[DONE]
+create user14....				[DONE]
+[root@room9pc01 ~]# 
+
+
+
+
